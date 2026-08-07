@@ -39,12 +39,22 @@ jobs:
               cran::shinylive@0.5.0
               local::.
 
-        # Export the current working directory as the shiny app
+        # shinylive::export() inlines every non dotfile in the app directory
+        # into app.json, and it does not honour .Rbuildignore. Exporting from
+        # the repo root therefore ships renv.lock, man/, the Dockerfile and the
+        # rest to the browser. Stage only what the app needs to run.
+        - name: Stage the app files for export
+          run: |
+            mkdir -p _app
+            cp app.R DESCRIPTION NAMESPACE LICENSE _app/
+            cp -r R inst _app/
+
+        # Export the staged app directory
         # using the pinned version of the Shinylive R package
-        - name: Create Shinylive App from working directory files
+        - name: Create Shinylive App from staged files
           shell: Rscript {0}
           run: |
-           shinylive::export(".", "_site")
+           shinylive::export("_app", "_site")
 
         # Upload a tar file that will work with GitHub Pages
         # Make sure to set a retention day to avoid running into a cap
