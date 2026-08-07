@@ -20,8 +20,8 @@ app_ui <- function(request) {
           "Interactive demonstration of modular Shiny application design patterns."
         )
       ),
+      filterModUI("filters"),
       bslib::navset_pill(
-        header = filterModUI("filters"),
         bslib::nav_panel(
           "AET01",
           tlgModUI(

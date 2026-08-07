@@ -38,14 +38,13 @@ tlgModUI <- function(id, params = NULL) {
       bslib::card_header("Runtime Comparison"),
       reactable::reactableOutput(ns("runtime_output"))
     ),
-    fluidRow(
+    div(
+      class = "card-group",
       bslib::card(
-        class = "w-50",
         bslib::card_header("{dtlg}"),
         reactable::reactableOutput(ns("dtlg_output"))
       ),
       bslib::card(
-        class = "w-50",
         bslib::card_header("Comparison"),
         uiOutput(ns("comparison_output"))
       )
@@ -66,13 +65,11 @@ tlgModUI <- function(id, params = NULL) {
 tlgModServer <- function(id, dtlg_fn, other_fn, n_iter, datasets, filter_params, other_params) {
   moduleServer(id, function(input, output, session) {
     #### Parameters ####
-    dataset_names <- reactive(purrr::map(datasets, names))
-
     observe({
       req(length(filter_params) > 0L)
 
       purrr::iwalk(filter_params, \(param_info, id) {
-        adam <- datasets[[param_info$dataset]]
+        adam <- datasets()[[param_info$dataset]]
         if (param_info$selection == "grep") {
           choices <- grepv(param_info$grep, names(adam))
         } else {
@@ -110,7 +107,7 @@ tlgModServer <- function(id, dtlg_fn, other_fn, n_iter, datasets, filter_params,
         dtlg = do.call(
           dtlg_fn,
           c(
-            datasets,
+            datasets(),
             other_params,
             selected_params()
           )
@@ -118,7 +115,7 @@ tlgModServer <- function(id, dtlg_fn, other_fn, n_iter, datasets, filter_params,
         comparison = do.call(
           other_fn,
           c(
-            datasets,
+            datasets(),
             other_params,
             selected_params()
           )
@@ -152,9 +149,9 @@ tlgModServer <- function(id, dtlg_fn, other_fn, n_iter, datasets, filter_params,
             name = "Garbage Collections per Second",
             cell = function(x) sprintf("%.2f", x)
           ),
-          n_itr  = reactable::colDef(name = "Number of Iterations"),
-          n_gc  = reactable::colDef(name = "Number of Garbage Collections"),
-          total_time  = reactable::colDef(name = "Total Execution Time"),
+          n_itr = reactable::colDef(name = "Number of Iterations"),
+          n_gc = reactable::colDef(name = "Number of Garbage Collections"),
+          total_time = reactable::colDef(name = "Total Execution Time"),
           result = reactable::colDef(show = FALSE),
           memory = reactable::colDef(show = FALSE),
           time = reactable::colDef(show = FALSE),
@@ -170,7 +167,7 @@ tlgModServer <- function(id, dtlg_fn, other_fn, n_iter, datasets, filter_params,
       do.call(
         dtlg_fn,
         c(
-          datasets,
+          datasets(),
           other_params,
           selected_params()
         )
@@ -186,7 +183,7 @@ tlgModServer <- function(id, dtlg_fn, other_fn, n_iter, datasets, filter_params,
       do.call(
         other_fn,
         c(
-          datasets,
+          datasets(),
           other_params,
           selected_params()
         )

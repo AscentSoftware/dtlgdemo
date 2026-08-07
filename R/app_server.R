@@ -41,15 +41,17 @@ app_server <- function(input, output, session) {
         class = "logical"
       )
     ),
-    datasets = list(
-      adsl = adsl(),
-      adae = adae() |>
-        purrr::map_if(
-          \(x) is.factor(x) && setequal(levels(x), c("N", "Y")),
-          \(x) structure(x == "Y", label = attr(x, "label"))
-        ) |>
-        dplyr::bind_cols()
-    ),
+    datasets = reactive({
+      list(
+        adsl = adsl(),
+        adae = adae() |>
+          purrr::map_if(
+            \(x) is.factor(x) && setequal(levels(x), c("N", "Y")),
+            \(x) structure(x == "Y", label = attr(x, "label"))
+          ) |>
+          dplyr::bind_cols()
+      )
+    }),
     other_params = list(
       patient_var = "USUBJID"
     )
