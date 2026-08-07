@@ -1,0 +1,192 @@
+:root {
+  /* Color System */
+  --bs-body-bg: #ffffff;
+  --bs-body-color: #1a1a1a;
+  --bs-emphasis-color: #1a1a1a;
+
+  /* Card & Surface Colors */
+  --bs-card-bg: #ffffff;
+  --bs-card-border-color: rgba(0, 0, 0, 0.1);
+  --bs-card-cap-bg: transparent;
+
+  /* Muted/Secondary Colors */
+  --bs-secondary: #ececf0;
+  --bs-secondary-rgb: 236, 236, 240;
+  --bs-secondary-color: #717182;
+  --bs-secondary-bg: #ececf0;
+  --bs-secondary-border-subtle: #e9ebef;
+
+  /* Text Colors */
+  --bs-muted: #717182;
+  --bs-text-muted: #717182;
+
+  /* Form Controls */
+  --bs-input-bg: #f3f3f5;
+  --bs-input-border-color: rgba(0, 0, 0, 0.1);
+  --bs-input-focus-border-color: #717182;
+  --bs-input-focus-box-shadow: 0 0 0 0.25rem rgba(113, 113, 130, 0.25);
+
+  /* Primary Colors */
+  --bs-primary: #030213;
+  --bs-primary-rgb: 3, 2, 19;
+
+  /* Border & Radius */
+  --bs-border-color: rgba(0, 0, 0, 0.1);
+  --bs-border-radius: 0.625rem;
+  --bs-border-radius-sm: calc(0.625rem - 4px);
+  --bs-border-radius-lg: 0.625rem;
+  --bs-border-radius-xl: calc(0.625rem + 4px);
+
+  /* Spacing (matching Tailwind) */
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 1.5rem;
+
+  /* Nav Pills */
+  --bs-nav-pills-border-width: 0;
+  --bs-nav-pills-border-color: transparent;
+  --bs-nav-pills-border-radius: 0.375rem;
+  --bs-nav-pills-link-hover-border-color: transparent;
+  --bs-nav-pills-link-active-bg: var(--bs-body-bg);
+  --bs-nav-pills-link-active-border-color: transparent;
+
+  /* Table */
+  --bs-table-striped-bg: transparent;
+  --bs-table-hover-bg: rgba(236, 236, 240, 0.5);
+  --bs-table-border-color: rgba(0, 0, 0, 0.1);
+
+  /* Accordion */
+  --bs-accordion-bg: transparent;
+  --bs-accordion-border-color: rgba(0, 0, 0, 0.1);
+  --bs-accordion-btn-focus-box-shadow: none;
+  --bs-accordion-active-bg: transparent;
+  --bs-accordion-active-color: var(--bs-body-color);
+}
+
+.dark {
+  --bs-body-bg: #1a1a1a;
+  --bs-body-color: #fafafa;
+  --bs-emphasis-color: #fafafa;
+
+  --bs-card-bg: #1a1a1a;
+  --bs-card-border-color: #434343;
+
+  --bs-secondary: #434343;
+  --bs-secondary-rgb: 67, 67, 67;
+  --bs-secondary-color: #b5b5b5;
+  --bs-secondary-bg: #434343;
+
+  --bs-muted: #b5b5b5;
+  --bs-text-muted: #b5b5b5;
+
+  --bs-input-bg: #434343;
+  --bs-input-border-color: #434343;
+
+  --bs-border-color: #434343;
+
+  --bs-table-hover-bg: rgba(67, 67, 67, 0.5);
+  --bs-table-border-color: #434343;
+}
+
+/* Typography */
+html {
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+h3 {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+h4, h5, h6 {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+label {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Custom Nav Tabs */
+.nav-pills {
+  background-color: var(--bs-secondary);
+  border-radius: 0.375rem;
+  padding: 0.25rem;
+  border: none;
+  display: inline-flex;
+}
+
+.nav-pills .nav-link {
+  border: none;
+  border-radius: 0.25rem;
+  color: var(--bs-text-muted);
+  padding: 0.375rem 0.75rem;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.nav-pills .nav-link:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--bs-body-color);
+}
+
+.nav-pills .nav-link.active {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Form Controls */
+.form-select,
+.form-control {
+  background-color: var(--bs-input-bg);
+  border: 1px solid var(--bs-input-border-color);
+  border-radius: calc(var(--bs-border-radius) - 2px);
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.form-select:focus,
+.form-control:focus {
+  background-color: var(--bs-input-bg);
+  border-color: var(--bs-input-focus-border-color);
+  box-shadow: var(--bs-input-focus-box-shadow);
+}
+
+.form-label {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}

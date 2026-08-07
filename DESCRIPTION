@@ -1,0 +1,28 @@
+Package: dtlgdemo
+Title: Shiny Application Demoing 'dtlg'
+Version: 0.0.0.9000
+Authors@R: 
+    person("Ashley", "Baldry", , "ashley.baldry@acuityanalytics.com", role = c("aut", "cre"))
+Description: A shinylive application that shows example scenarios of using dtlg. Comparisons
+    made against other equivalent packages using 'tidyverse' for data manipulation.
+License: MIT + file LICENSE
+Depends:
+    R (>= 4.1.0)
+Imports:
+    bench,
+    bslib,
+    data.table,
+    dtlg,
+    golem,
+    purrr,
+    random.cdisc.data,
+    reactable,
+    shiny,
+    tern
+Suggests:
+    devtools,
+    shinylive,
+    testthat (>= 3.0.0)
+Encoding: UTF-8
+RoxygenNote: 7.3.3
+Config/testthat/edition: 3
