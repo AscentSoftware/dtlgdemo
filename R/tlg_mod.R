@@ -33,7 +33,7 @@ tlgModUI <- function(id, params = NULL) {
             }),
             div(
               class = "form-group shiny-input-container",
-              actionButton(ns("run"), "Run comparison", class = "btn-primary", icon = icon("play"))
+              actionButton(ns("run"), "Run comparison", class = "btn-secondary", icon = icon("play"))
             )
           )
         )
