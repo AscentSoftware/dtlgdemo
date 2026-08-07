@@ -3,3 +3,4 @@
 export(run_app)
 import(data.table)
 import(shiny)
+importFrom(rlang,.data)

@@ -18,6 +18,7 @@ Imports:
     purrr,
     random.cdisc.data,
     reactable,
+    rlang,
     rtables,
     shiny,
     tern

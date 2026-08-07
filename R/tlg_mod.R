@@ -17,23 +17,23 @@ tlgModUI <- function(id, params = NULL) {
 
   tagList(
     if (length(params) > 0L)
-    bslib::card(
-      bslib::card_header("Table Parameters"),
-      bslib::card_body(
-        div(
-          class = "row g-4",
-          purrr::imap(params, \(param_info, id) {
-            selectizeInput(
-              inputId = ns(id),
-              label = param_info$label,
-              choices = NULL,
-              multiple = param_info$multiple,
-              options = list(dropdownParent = "body")
-            )
-          })
+      bslib::card(
+        bslib::card_header("Table Parameters"),
+        bslib::card_body(
+          div(
+            class = "row g-4",
+            purrr::imap(params, \(param_info, id) {
+              selectizeInput(
+                inputId = ns(id),
+                label = param_info$label,
+                choices = NULL,
+                multiple = param_info$multiple,
+                options = list(dropdownParent = "body")
+              )
+            })
+          )
         )
-      )
-    ),
+      ),
     bslib::card(
       bslib::card_header("Runtime Comparison"),
       reactable::reactableOutput(ns("runtime_output"))
