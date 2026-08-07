@@ -88,8 +88,7 @@ tlgModServer <- function(id, dtlg_fn, other_fn, n_iter, datasets, filter_params,
           selected = param_info$default %||% choices[1L]
         )
       })
-    }) |>
-      bindCache(dataset_names())
+    })
 
     selected_params <- reactive({
       if (length(filter_params) == 0L) return(NULL)
