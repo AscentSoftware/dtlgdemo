@@ -56,7 +56,7 @@ tlgModUI <- function(id, params = NULL) {
 #' @param dtlg_fn Function body of the function to use from the dtlg pcakage
 #' @param other_fn Function body of the function to use as a comparison output
 #' @param n_iter (Reactive) Number of iterations to run the comparison over
-#' @param dataset List of datasets to use as part of the comparison. Must be named
+#' @param datasets List of datasets to use as part of the comparison. Must be named
 #' in the same way that they are arguments in `dtlg_fn` and `other_fn`
 #' @param filter_params A named list of arguments in `dtlg_fn` that can be updated
 #' in the UI for different tables

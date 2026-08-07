@@ -29,13 +29,13 @@ interactivity of creating the table. By default none are selected.}
 
 \item{n_iter}{(Reactive) Number of iterations to run the comparison over}
 
+\item{datasets}{List of datasets to use as part of the comparison. Must be named
+in the same way that they are arguments in `dtlg_fn` and `other_fn`}
+
 \item{filter_params}{A named list of arguments in `dtlg_fn` that can be updated
 in the UI for different tables}
 
 \item{other_params}{A named list of additional arguments passed to `dtlg_fn`}
-
-\item{dataset}{List of datasets to use as part of the comparison. Must be named
-in the same way that they are arguments in `dtlg_fn` and `other_fn`}
 }
 \description{
 A module that compares the generation time using thedtlg package with
