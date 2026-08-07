@@ -36,7 +36,17 @@ tlgModUI <- function(id, params = NULL) {
       ),
     bslib::card(
       bslib::card_header("Runtime Comparison"),
-      reactable::reactableOutput(ns("runtime_output"))
+      bslib::card_body(
+        div(
+          class = "d-flex align-items-center gap-3 mb-3",
+          actionButton(ns("run"), "Run comparison", class = "btn-primary"),
+          tags$span(
+            class = "text-muted",
+            "Choose your parameters, then run the comparison."
+          )
+        ),
+        reactable::reactableOutput(ns("runtime_output"))
+      )
     ),
     div(
       class = "card-group",
@@ -121,7 +131,8 @@ tlgModServer <- function(id, dtlg_fn, other_fn, n_iter, datasets, filter_params,
           )
         )
       )
-    })
+    }) |>
+      bindEvent(input$run)
 
     output$runtime_output <- reactable::renderReactable({
       req(run_info())
@@ -172,7 +183,8 @@ tlgModServer <- function(id, dtlg_fn, other_fn, n_iter, datasets, filter_params,
           selected_params()
         )
       )
-    })
+    }) |>
+      bindEvent(input$run)
 
     output$dtlg_output <- reactable::renderReactable(reactable::reactable(dtlg_info()))
 
@@ -188,7 +200,8 @@ tlgModServer <- function(id, dtlg_fn, other_fn, n_iter, datasets, filter_params,
           selected_params()
         )
       )
-    })
+    }) |>
+      bindEvent(input$run)
 
     output$comparison_output <- shiny::renderUI(rtables::as_html(comparison_info()))
   })
