@@ -21,7 +21,7 @@ tlgModUI <- function(id, params = NULL) {
         bslib::card_header("Table Parameters"),
         bslib::card_body(
           div(
-            class = "row g-4",
+            class = "row g-4 align-items-end",
             purrr::imap(params, \(param_info, id) {
               selectizeInput(
                 inputId = ns(id),
@@ -30,23 +30,17 @@ tlgModUI <- function(id, params = NULL) {
                 multiple = param_info$multiple,
                 options = list(dropdownParent = "body")
               )
-            })
+            }),
+            div(
+              class = "form-group shiny-input-container",
+              actionButton(ns("run"), "Run comparison", class = "btn-primary", icon = icon("play"))
+            )
           )
         )
       ),
     bslib::card(
       bslib::card_header("Runtime Comparison"),
-      bslib::card_body(
-        div(
-          class = "d-flex align-items-center gap-3 mb-3",
-          actionButton(ns("run"), "Run comparison", class = "btn-primary"),
-          tags$span(
-            class = "text-muted",
-            "Choose your parameters, then run the comparison."
-          )
-        ),
-        reactable::reactableOutput(ns("runtime_output"))
-      )
+      bslib::card_body(reactable::reactableOutput(ns("runtime_output")))
     ),
     div(
       class = "card-group",
