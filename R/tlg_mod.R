@@ -21,7 +21,7 @@ tlgModUI <- function(id, params = NULL) {
         bslib::card_header("Table Parameters"),
         bslib::card_body(
           div(
-            class = "row g-4",
+            class = "row g-4 align-items-end",
             purrr::imap(params, \(param_info, id) {
               selectizeInput(
                 inputId = ns(id),
@@ -30,13 +30,17 @@ tlgModUI <- function(id, params = NULL) {
                 multiple = param_info$multiple,
                 options = list(dropdownParent = "body")
               )
-            })
+            }),
+            div(
+              class = "form-group shiny-input-container",
+              actionButton(ns("run"), "Run comparison", class = "btn-secondary", icon = icon("play"))
+            )
           )
         )
       ),
     bslib::card(
       bslib::card_header("Runtime Comparison"),
-      reactable::reactableOutput(ns("runtime_output"))
+      bslib::card_body(reactable::reactableOutput(ns("runtime_output")))
     ),
     div(
       class = "card-group",
@@ -121,7 +125,8 @@ tlgModServer <- function(id, dtlg_fn, other_fn, n_iter, datasets, filter_params,
           )
         )
       )
-    })
+    }) |>
+      bindEvent(input$run)
 
     output$runtime_output <- reactable::renderReactable({
       req(run_info())
@@ -172,7 +177,8 @@ tlgModServer <- function(id, dtlg_fn, other_fn, n_iter, datasets, filter_params,
           selected_params()
         )
       )
-    })
+    }) |>
+      bindEvent(input$run)
 
     output$dtlg_output <- reactable::renderReactable(reactable::reactable(dtlg_info()))
 
@@ -188,7 +194,8 @@ tlgModServer <- function(id, dtlg_fn, other_fn, n_iter, datasets, filter_params,
           selected_params()
         )
       )
-    })
+    }) |>
+      bindEvent(input$run)
 
     output$comparison_output <- shiny::renderUI(rtables::as_html(comparison_info()))
   })
