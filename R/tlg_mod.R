@@ -180,7 +180,9 @@ tlgModServer <- function(id, dtlg_fn, other_fn, n_iter, datasets, filter_params,
     }) |>
       bindEvent(input$run)
 
-    output$dtlg_output <- reactable::renderReactable(reactable::reactable(dtlg_info()))
+    output$dtlg_output <- reactable::renderReactable({
+      reactable::reactable(dtlg_info(), defaultColDef = reactable::colDef(html = TRUE))
+    })
 
     #### Comparison ####
     comparison_info <- reactive({
