@@ -31,6 +31,17 @@ app_ui <- function(request) {
               aesi_vars = list(label = "Binary AESI Flags", multiple = TRUE)
             )
           )
+        ),
+        bslib::nav_panel(
+          "AET02",
+          tlgModUI(
+            "aet02",
+            params = list(
+              treat = list(label = "Treatment Variable", multiple = FALSE),
+              target = list(label = "Preferred Term Variable", multiple = FALSE),
+              rows_by = list(label = "Higher-Level Nesting Term", multiple = FALSE)
+            )
+          )
         )
       )
     )

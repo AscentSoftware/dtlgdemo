@@ -53,7 +53,45 @@ app_server <- function(input, output, session) {
       )
     }),
     other_params = list(
-      patient_var = "USUBJID"
+      patient = "USUBJID"
+    )
+  )
+
+  tlgModServer(
+    "aet02",
+    dtlg_fn = dtlg::AET02_table,
+    other_fn = dtlg::tern_AET02_table,
+    n_iter = filters$n_iter,
+    filter_params = list(
+      treat = list(
+        dataset = "adsl",
+        type = "col_names",
+        selection = "grep",
+        grep = "ARM|TRT"
+      ),
+      target = list(
+        dataset = "adae",
+        type = "col_names",
+        selection = "class",
+        class = "factor",
+        default = "AEDECOD"
+      ),
+      rows_by = list(
+        dataset = "adae",
+        type = "col_names",
+        selection = "class",
+        class = "factor",
+        default = "AEBODSYS"
+      )
+    ),
+    datasets = reactive({
+      list(
+        adsl = adsl(),
+        adae = adae()
+      )
+    }),
+    other_params = list(
+      patient = "USUBJID"
     )
   )
 }
